@@ -17,15 +17,21 @@ def main():
     player = Player(pos_x, pos_y)
 
     while True:
+        # 1. Event Handling
         log_state()
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 return
+            
+        # 2. Update Game State
+        player.update(dt)
+
+        # 3. Draw / Render
         screen.fill("black")
         player.draw(screen)
-        player.update(dt)
         pygame.display.flip()
 
+        # 4. Tick the Clock
         dt = game_clock.tick(60) / 1000
 
 
