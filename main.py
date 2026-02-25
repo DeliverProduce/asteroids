@@ -14,7 +14,12 @@ def main():
 
     pos_x = SCREEN_WIDTH / 2
     pos_y = SCREEN_HEIGHT / 2
+    
+    updatable = pygame.sprite.Group()
+    drawable = pygame.sprite.Group()
+    Player.containers = (updatable, drawable)
     player = Player(pos_x, pos_y)
+    
 
     while True:
         # 1. Event Handling
@@ -24,11 +29,12 @@ def main():
                 return
             
         # 2. Update Game State
-        player.update(dt)
+        updatable.update(dt)
 
         # 3. Draw / Render
         screen.fill("black")
-        player.draw(screen)
+        for ele in drawable:
+            ele.draw(screen)
         pygame.display.flip()
 
         # 4. Tick the Clock
